@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sse</title>
+	<style>
+	.demo2{
+	    transform-origin: 55px 55px;
+	    transform: rotate(-90deg);
+	    transition: stroke-dasharray .3s ease-in;
+	}
+
+	</style>
+</head>
+<body>
+	<svg xmlns="http://www.w3.org/200/svg" height="100%" width="100%">
+	    <circle cx="55" cy="55" r="50" fill="none" stroke="grey" stroke-width="10" />
+	    <circle class="demo2" id="J_demo2" cx="55" cy="55" r="50" fill="none" stroke="red" stroke-linecap="round" stroke-width="10" stroke-dasharray="0,10000"/>
+	</svg>
+	<input id="J_btn_1" type="text" name="" value="10">
+	<input id="J_btn_2" type="button" name="" value="set">
+</body>
+<script>
+	var demo2 =  document.querySelector(".demo2");
+	var btn1 = document.querySelector("#J_btn_1");
+	var btn2 = document.querySelector("#J_btn_2");
+
+	var circleLength = Math.floor(2 * Math.PI * demo2.getAttribute("r"));
+	window.onload = rotateCircle;
+	btn2.onclick = rotateCircle;
+	function rotateCircle () {
+		console.log(circleLength);
+	    var val = parseFloat(btn1.value).toFixed(2);
+	    val = Math.max(0,val);
+	    val = Math.min(100,val);
+	    demo2.setAttribute("stroke-dasharray","" + circleLength * val / 100 + ",10000");
+	}
+</script>
+</html>
